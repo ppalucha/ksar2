@@ -19,7 +19,7 @@ public class SplashPicture extends JPanel {
     Image img = null;
 
     public SplashPicture() {
-        img = new ImageIcon(this.getClass().getResource("/logo_ksar.jpg")).getImage();
+        img = new ImageIcon(this.getClass().getResource("/logo_ksar2.png")).getImage();
         repaint();
     }
 
