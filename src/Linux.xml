@@ -12,102 +12,64 @@
 <ConfiG>
     <OS>
         <OSType name="Linux">
-            <Stat name="proc1">
-                <headerstr>proc/s</headerstr>
-                <graphname>PROC</graphname>
-            </Stat>
-            <Stat name="cswch">
-                <headerstr>cswch/s</headerstr>
-                <graphname>CSWCH</graphname>
-            </Stat>
-            <Stat name="intr">
-                <headerstr>INTR intr/s</headerstr>
-                <graphname>INTR</graphname>
-            </Stat>
-            <Stat name="swap1">
-                <headerstr>pswpin/s pswpout/s</headerstr>
-                <graphname>SWAP</graphname>
-            </Stat>
-            <Stat name="proc2">
-                <headerstr>proc/s cswch/s</headerstr>
-                <graphname>PROC2</graphname>
-            </Stat>
-            <Stat name="dev2">
-                <headerstr>DEV tps blks/s</headerstr>
-                <graphname>DEV</graphname>
-            </Stat>
-            <Stat name="page1">
-                <headerstr>frmpg/s bufpg/s campg/s</headerstr>
-                <graphname>PAGE</graphname>
-            </Stat>
-            <Stat name="page2">
-                <headerstr>frmpg/s shmpg/s bufpg/s campg/s</headerstr>
-                <graphname>PAGE</graphname>
-            </Stat>
-            <Stat name="load1">
-                <headerstr>runq-sz plist-sz ldavg-1 ldavg-5</headerstr>
-                <graphname>LOAD</graphname>
-            </Stat>
-            <Stat name="dev3">
-                <headerstr>DEV tps rd_sec/s wr_sec/s</headerstr>
-                <graphname>DEV</graphname>
-            </Stat>
-            <Stat name="paging1">
-                <headerstr>pgpgin/s pgpgout/s fault/s majflt/s</headerstr>
-                <graphname>PAGING</graphname>
-            </Stat>
-            <Stat name="dentunusd1">
-                <headerstr>dentunusd file-nr inode-nr pty-nr</headerstr>
-                <graphname>IGNORE</graphname>
-            </Stat>
+            <!-- Stats to parse -->
+            
             <Stat name="cpu2">
                 <headerstr>CPU %user %nice %system %idle</headerstr>
                 <graphname>CPU</graphname>
-            </Stat>
-            <Stat name="io">
-                <headerstr>tps rtps wtps bread/s bwrtn/s</headerstr>
-                <graphname>IO</graphname>
-            </Stat>
-            <Stat name="socket1">
-                <headerstr>totsck tcpsck udpsck rawsck ip-frag</headerstr>
-                <graphname>SOCKET</graphname>
-            </Stat>
-            <Stat name="load2">
-                <headerstr>runq-sz plist-sz ldavg-1 ldavg-5 ldavg-15</headerstr>
-                <graphname>LOAD</graphname>
-            </Stat>
-            <Stat name="kswap">
-                <headerstr>kbswpfree kbswpused %swpused kbswpcad %swpcad</headerstr>
-                <graphname>KSWAP</graphname>
             </Stat>
             <Stat name="cpu3">
                 <headerstr>CPU %user %nice %system %iowait %idle</headerstr>
                 <graphname>CPU</graphname>
             </Stat>
-            <Stat name="paging2">
-                <headerstr>pgpgin/s pgpgout/s activepg inadtypg inaclnpg inatarpg</headerstr>
-                <graphname>PAGING</graphname>
-            </Stat>
-            <Stat name="nfsc">
-                <headerstr>call/s retrans/s read/s write/s access/s getatt/s</headerstr>
-                <graphname>NFSC</graphname>
-            </Stat>
-            <Stat name="socket2">
-                <headerstr>totsck tcpsck udpsck rawsck ip-frag tcp-tw</headerstr>
-                <graphname>SOCKET</graphname>
-            </Stat>
             <Stat name="cpu4">
                 <headerstr>CPU %user %nice %system %iowait %steal %idle</headerstr>
                 <graphname>CPU</graphname>
             </Stat>
-            <Stat name="tty">
-                <headerstr>TTY rcvin/s xmtin/s framerr/s prtyerr/s brk/s ovrun/s</headerstr>
+            <Stat name="cpu5">
+                <headerstr>CPU %usr %nice %sys %iowait %steal %irq %soft %guest %idle</headerstr>
+                <graphname>CPU</graphname>
+            </Stat>
+            <Stat name="cpu6">
+                <headerstr>CPU %usr %nice %sys %iowait %steal %irq %soft %guest %idle</headerstr>
+                <graphname>CPU</graphname>
+            </Stat>
+            <Stat name="cpu7">
+                <headerstr>CPU %usr %nice %sys %iowait %steal %irq %soft %guest %gnice %idle</headerstr>
+                <graphname>CPU</graphname>
+            </Stat>            
+ 
+            <Stat name="cswch">
+                <headerstr>cswch/s</headerstr>
+                <graphname>CSWCH</graphname>
+            </Stat>
+            
+            <Stat name="dentunusd1">
+                <headerstr>dentunusd file-nr inode-nr pty-nr</headerstr>
                 <graphname>IGNORE</graphname>
             </Stat>
-            <Stat name="kmem2">
-                <headerstr>kbmemfree kbmemused %memused kbbuffers kbcached kbcommit %commit</headerstr>
-                <graphname>KMEM</graphname>
+            <Stat name="dentunusd2">
+                <headerstr>dentunusd file-sz inode-sz super-sz %super-sz dquot-sz %dquot-sz rtsig-sz %rtsig-sz</headerstr>
+                <graphname>IGNORE</graphname>
             </Stat>
+           <Stat name="dentunusd3">
+                <headerstr>dentunusd file-sz %file-sz inode-sz super-sz %super-sz dquot-sz %dquot-sz rtsig-sz %rtsig-sz</headerstr>
+                <graphname>IGNORE</graphname>
+            </Stat>             
+
+            <Stat name="dev2">
+                <headerstr>DEV tps blks/s</headerstr>
+                <graphname>DEV</graphname>
+            </Stat>
+            <Stat name="dev3">
+                <headerstr>DEV tps rd_sec/s wr_sec/s</headerstr>
+                <graphname>DEV</graphname>
+            </Stat>
+            <Stat name="dev4">
+                <headerstr>DEV tps rd_sec/s wr_sec/s avgrq-sz avgqu-sz await svctm %util</headerstr>
+                <graphname>DEV</graphname>
+            </Stat>
+            
             <Stat name="inet10">
                 <headerstr>IFACE rxpck/s txpck/s rxbyt/s txbyt/s rxcmp/s txcmp/s rxmcst/s</headerstr>
                 <graphname>INET1</graphname>
@@ -116,9 +78,24 @@
                 <headerstr>IFACE rxpck/s txpck/s rxkB/s txkB/s rxcmp/s txcmp/s rxmcst/s</headerstr>
                 <graphname>INET1</graphname>
             </Stat>
-            <Stat name="cpu5">
-                <headerstr>CPU %usr %nice %sys %iowait %steal %irq %soft %guest %idle</headerstr>
-                <graphname>CPU</graphname>
+           <Stat name="inet21">
+                <headerstr>IFACE rxerr/s txerr/s coll/s rxdrop/s txdrop/s txcarr/s rxfram/s rxfifo/s txfifo/s</headerstr>
+                <graphname>INET2</graphname>
+            </Stat>
+ 
+            <Stat name="intr">
+                <headerstr>INTR intr/s</headerstr>
+                <graphname>INTR</graphname>
+            </Stat>
+            
+            <Stat name="io">
+                <headerstr>tps rtps wtps bread/s bwrtn/s</headerstr>
+                <graphname>IO</graphname>
+            </Stat>
+            
+            <Stat name="kmem2">
+                <headerstr>kbmemfree kbmemused %memused kbbuffers kbcached kbcommit %commit</headerstr>
+                <graphname>KMEM</graphname>
             </Stat>
             <Stat name="kmem3">
                 <headerstr>kbmemfree kbmemused %memused kbmemshrd kbbuffers kbcached kbswpfree kbswpused %swpused</headerstr>
@@ -128,34 +105,21 @@
                 <headerstr>kbmemfree kbmemused %memused kbbuffers kbcached kbswpfree kbswpused %swpused kbswpcad</headerstr>
                 <graphname>KMEM</graphname>
             </Stat>
-            <Stat name="dev4">
-                <headerstr>DEV tps rd_sec/s wr_sec/s avgrq-sz avgqu-sz await svctm %util</headerstr>
-                <graphname>DEV</graphname>
+                        
+            <Stat name="kswap">
+                <headerstr>kbswpfree kbswpused %swpused kbswpcad %swpcad</headerstr>
+                <graphname>KSWAP</graphname>
             </Stat>
-            <Stat name="dentunusd2">
-                <headerstr>dentunusd file-sz inode-sz super-sz %super-sz dquot-sz %dquot-sz rtsig-sz %rtsig-sz</headerstr>
-                <graphname>IGNORE</graphname>
+            
+            <Stat name="load1">
+                <headerstr>runq-sz plist-sz ldavg-1 ldavg-5</headerstr>
+                <graphname>LOAD</graphname>
             </Stat>
-            <Stat name="paging3">
-                <headerstr>pgpgin/s pgpgout/s fault/s majflt/s pgfree/s pgscank/s pgscand/s pgsteal/s %vmeff</headerstr>
-                <graphname>PAGING</graphname>
+            <Stat name="load2">
+                <headerstr>runq-sz plist-sz ldavg-1 ldavg-5 ldavg-15</headerstr>
+                <graphname>LOAD</graphname>
             </Stat>
-            <Stat name="inet21">
-                <headerstr>IFACE rxerr/s txerr/s coll/s rxdrop/s txdrop/s txcarr/s rxfram/s rxfifo/s txfifo/s</headerstr>
-                <graphname>INET2</graphname>
-            </Stat>
-            <Stat name="dentunusd3">
-                <headerstr>dentunusd file-sz %file-sz inode-sz super-sz %super-sz dquot-sz %dquot-sz rtsig-sz %rtsig-sz</headerstr>
-                <graphname>IGNORE</graphname>
-            </Stat>
-            <Stat name="cpu6">
-                <headerstr>CPU %usr %nice %sys %iowait %steal %irq %soft %guest %idle</headerstr>
-                <graphname>CPU</graphname>
-            </Stat>
-            <Stat name="nsfm">
-                <headerstr>scall/s badcall/s packet/s udp/s tcp/s hit/s miss/s sread/s swrite/s saccess/s sgetatt/s</headerstr>
-                <graphname>NFSM</graphname>
-            </Stat>
+            
             <Stat name="miscip1">
                 <headerstr>irec/s fwddgm/s idel/s orq/s asmrq/s asmok/s fragok/s fragcrt/s</headerstr>
                 <graphname>IGNORE</graphname>
@@ -220,7 +184,67 @@
                 <headerstr> CPU MHz</headerstr>
                 <graphname>IGNORE</graphname>
             </Stat>
-
+            
+            <Stat name="nfsc">
+                <headerstr>call/s retrans/s read/s write/s access/s getatt/s</headerstr>
+                <graphname>NFSC</graphname>
+            </Stat>
+            
+            <Stat name="nsfm">
+                <headerstr>scall/s badcall/s packet/s udp/s tcp/s hit/s miss/s sread/s swrite/s saccess/s sgetatt/s</headerstr>
+                <graphname>NFSM</graphname>
+            </Stat>
+            
+            <Stat name="page1">
+                <headerstr>frmpg/s bufpg/s campg/s</headerstr>
+                <graphname>PAGE</graphname>
+            </Stat>
+            <Stat name="page2">
+                <headerstr>frmpg/s shmpg/s bufpg/s campg/s</headerstr>
+                <graphname>PAGE</graphname>
+            </Stat>
+                        
+            <Stat name="paging1">
+                <headerstr>pgpgin/s pgpgout/s fault/s majflt/s</headerstr>
+                <graphname>PAGING</graphname>
+            </Stat>                             
+            <Stat name="paging2">
+                <headerstr>pgpgin/s pgpgout/s activepg inadtypg inaclnpg inatarpg</headerstr>
+                <graphname>PAGING</graphname>
+            </Stat>
+            <Stat name="paging3">
+                <headerstr>pgpgin/s pgpgout/s fault/s majflt/s pgfree/s pgscank/s pgscand/s pgsteal/s %vmeff</headerstr>
+                <graphname>PAGING</graphname>
+            </Stat>
+                        
+            <Stat name="proc1">
+                <headerstr>proc/s</headerstr>
+                <graphname>PROC</graphname>
+            </Stat>
+            <Stat name="proc2">
+                <headerstr>proc/s cswch/s</headerstr>
+                <graphname>PROC2</graphname>
+            </Stat>
+            
+            <Stat name="socket1">
+                <headerstr>totsck tcpsck udpsck rawsck ip-frag</headerstr>
+                <graphname>SOCKET</graphname>
+            </Stat>
+            <Stat name="socket2">
+                <headerstr>totsck tcpsck udpsck rawsck ip-frag tcp-tw</headerstr>
+                <graphname>SOCKET</graphname>
+            </Stat>
+            
+            <Stat name="swap1">
+                <headerstr>pswpin/s pswpout/s</headerstr>
+                <graphname>SWAP</graphname>
+            </Stat>
+                    
+            <Stat name="tty">
+                <headerstr>TTY rcvin/s xmtin/s framerr/s prtyerr/s brk/s ovrun/s</headerstr>
+                <graphname>IGNORE</graphname>
+            </Stat>
+            
             <!-- GRAPHS -->
             <Graph name="PROC" Title="Proc" type="unique">
                 <Plot Title="proc">
