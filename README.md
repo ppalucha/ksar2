@@ -6,3 +6,5 @@ by Unix/Linux sa/sar commands.
 
 This is fork of ksar project hosted originally at sourceforce.net. Since original project 
 seams to be abandoned, this fork is created to maintain and develop the application.
+
+If you want just to run the application, download and run jar file from *distrib* directory.
