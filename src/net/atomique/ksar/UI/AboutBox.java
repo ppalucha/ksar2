@@ -57,18 +57,18 @@ public class AboutBox extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        versionlabel.setText("kSar version: " + VersionNumber.getVersionNumber());
+        versionlabel.setText("kSar2 version: " + VersionNumber.getVersionNumber());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGap(0, 442, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 118, Short.MAX_VALUE)
+                    .addGap(0, 174, Short.MAX_VALUE)
                     .addComponent(versionlabel)
-                    .addGap(0, 119, Short.MAX_VALUE)))
+                    .addGap(0, 175, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,16 +84,16 @@ public class AboutBox extends javax.swing.JDialog {
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
-        urllabel.setText("website: http://sourceforge.net/projects/ksar/");
+        urllabel.setText("https://github.com/ppalucha/ksar2");
         jPanel2.add(urllabel);
 
-        authorlabel.setText("Author: xavier cherif");
+        authorlabel.setText("Author: Paweł Pałucha");
         jPanel2.add(authorlabel);
 
         licencelabel.setText("License: BSD (see LICENCE file)");
         jPanel2.add(licencelabel);
 
-        tipslabel.setText("ARS LONGA, VITA BREVIS");
+        tipslabel.setText("Based on kSar by Xavier Cheriff,Ars Longa, Vita Brevis");
         jPanel2.add(tipslabel);
 
         getContentPane().add(jPanel2);

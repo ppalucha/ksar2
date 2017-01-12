@@ -243,6 +243,6 @@ public class kSar {
     public AllParser myparser = null;
     private boolean Parsing = false;
     public int total_graph = 0;
-    public SortedTreeNode graphtree = new SortedTreeNode("kSar");
+    public SortedTreeNode graphtree = new SortedTreeNode("kSar2");
     public int page_to_print = 0;
 }

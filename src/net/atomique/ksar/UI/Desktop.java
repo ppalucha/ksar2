@@ -156,7 +156,7 @@ public class Desktop extends javax.swing.JFrame {
         AboutMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("kSar : a sar grapher");
+        setTitle("kSar2 : a sar grapher");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -285,7 +285,7 @@ public class Desktop extends javax.swing.JFrame {
 
 
     private void tryToQuit() {
-        int i = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit kSar ?", "Confirm", JOptionPane.YES_NO_OPTION);
+        int i = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit kSar2 ?", "Confirm", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
