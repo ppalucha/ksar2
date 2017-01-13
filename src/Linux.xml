@@ -93,6 +93,11 @@
                 <graphname>IO</graphname>
             </Stat>
             
+            <Stat name="khuge1">
+                <headerstr>kbhugfree kbhugused %hugused</headerstr>
+                <graphname>KHUGE</graphname>
+            </Stat>
+            
             <Stat name="kmem2">
                 <headerstr>kbmemfree kbmemused %memused kbbuffers kbcached kbcommit %commit</headerstr>
                 <graphname>KMEM</graphname>
@@ -105,6 +110,13 @@
                 <headerstr>kbmemfree kbmemused %memused kbbuffers kbcached kbswpfree kbswpused %swpused kbswpcad</headerstr>
                 <graphname>KMEM</graphname>
             </Stat>
+            
+            <!-- RH 7.x memory stats -->
+            <Stat name="kmem5">
+                <headerstr>kbmemfree kbmemused %memused kbbuffers kbcached kbcommit %commit kbactive kbinact kbdirty</headerstr>
+                <graphname>KMEM</graphname>
+            </Stat>
+            
                         
             <Stat name="kswap">
                 <headerstr>kbswpfree kbswpused %swpused kbswpcad %swpcad</headerstr>
@@ -117,6 +129,10 @@
             </Stat>
             <Stat name="load2">
                 <headerstr>runq-sz plist-sz ldavg-1 ldavg-5 ldavg-15</headerstr>
+                <graphname>LOAD</graphname>
+            </Stat>
+            <Stat name="load3">
+                <headerstr>runq-sz plist-sz ldavg-1 ldavg-5 ldavg-15 blocked</headerstr>
                 <graphname>LOAD</graphname>
             </Stat>
             
@@ -246,6 +262,49 @@
             </Stat>
             
             <!-- GRAPHS -->
+            <Graph name="KHUGE" Title="Huge Pages" type="unique">
+                <Plot Title="Huge Pages KB">
+                    <cols>kbhugfree kbhugused</cols>
+                    <format base="1024" factor="1024"/>
+                </Plot>
+                <Plot Title="Huge Pages % Free">
+                    <cols>%hugused</cols>
+                </Plot>
+            </Graph>
+            <Graph name="KMEM" Title="KMem" type="unique">
+                <Plot Title="KMem">
+                    <cols>kbmemfree kbmemused kbmemshrd kbbuffers kbcached kbcommit</cols>
+                    <format base="1024" factor="1024"></format>
+                </Plot>
+                <Plot Title="Swap">
+                    <cols>kbswpfree kbswpused kbswpcad</cols>
+                    <format base="1024" factor="1024"></format>
+                </Plot>
+                <Plot Title="%">
+                    <cols>%memused %swpused %commit</cols>
+                </Plot>
+            </Graph>
+            <Graph name="KSWAP" Title="KSwap" type="unique">
+                <Plot Title="Swap">
+                    <cols>kbswpfree kbswpused kbswpcad</cols>
+                    <format base="1024" factor="1024"></format>
+                </Plot>
+                <Plot Title="%">
+                    <cols>%swpused %swpcad</cols>
+                </Plot>
+            </Graph>
+            <Graph name="LOAD" Title="Load" type="unique">
+                <Plot Title="RunQ">
+                    <cols>runq-sz</cols>
+                </Plot>
+                <Plot Title="Plist">
+                    <cols>plist-sz blocked</cols>
+                </Plot>
+                <Plot Title="LA">
+                    <cols>ldavg-1 ldavg-5 ldavg-15</cols>
+                </Plot>
+            </Graph>
+            
             <Graph name="PROC" Title="Proc" type="unique">
                 <Plot Title="proc">
                     <cols>proc/s</cols>
@@ -339,39 +398,8 @@
                     <cols>frmpg/s shmpg/s bufpg/s campg/s</cols>
                 </Plot>
             </Graph>
-            <Graph name="KMEM" Title="KMem" type="unique">
-                <Plot Title="KMem">
-                    <cols>kbmemfree kbmemused kbmemshrd kbbuffers kbcached kbcommit</cols>
-                    <format base="1024" factor="1024"></format>
-                </Plot>
-                <Plot Title="Swap">
-                    <cols>kbswpfree kbswpused kbswpcad</cols>
-                    <format base="1024" factor="1024"></format>
-                </Plot>
-                <Plot Title="%">
-                    <cols>%memused %swpused %commit</cols>
-                </Plot>
-            </Graph>
-            <Graph name="KSWAP" Title="KSwap" type="unique">
-                <Plot Title="Swap">
-                    <cols>kbswpfree kbswpused kbswpcad</cols>
-                    <format base="1024" factor="1024"></format>
-                </Plot>
-                <Plot Title="%">
-                    <cols>%swpused %swpcad</cols>
-                </Plot>
-            </Graph>
-            <Graph name="LOAD" Title="Load" type="unique">
-                <Plot Title="RunQ">
-                    <cols>runq-sz</cols>
-                </Plot>
-                <Plot Title="Plist">
-                    <cols>plist-sz</cols>
-                </Plot>
-                <Plot Title="LA">
-                    <cols>ldavg-1 ldavg-5 ldavg-15</cols>
-                </Plot>
-            </Graph>
+            
+            
             <Graph name="SOCKET" Title="Socket" type="unique">
                 <Plot Title="Socket">
                     <cols>totsck tcpsck udpsck rawsck</cols>

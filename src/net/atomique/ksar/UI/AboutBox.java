@@ -93,7 +93,7 @@ public class AboutBox extends javax.swing.JDialog {
         licencelabel.setText("License: BSD (see LICENCE file)");
         jPanel2.add(licencelabel);
 
-        tipslabel.setText("Based on kSar by Xavier Cheriff,Ars Longa, Vita Brevis");
+        tipslabel.setText("Based on kSar by Xavier Cheriff, Ars Longa, Vita Brevis");
         jPanel2.add(tipslabel);
 
         getContentPane().add(jPanel2);

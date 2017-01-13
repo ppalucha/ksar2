@@ -70,6 +70,12 @@ public class Linux extends OSParser {
         }
     }
     
+    /**
+     * Parses single line
+     * @param line Whole line to parse
+     * @param columns Array of white-space separated tokens from line
+     * @return 0 on succesfull parse, 1 on ignored line, negative for error
+     */
     @Override
     public int parse(String line, String[] columns) {
         int heure = 0;
@@ -82,7 +88,7 @@ public class Linux extends OSParser {
             return 0;
         }
 
-        if (line.indexOf("unix restarts") >= 0 || line.indexOf(" unix restarted") >= 0) {
+        if (line.contains("LINUX RESTART") || line.contains("unix restart")) {
             return 0;
         }
 

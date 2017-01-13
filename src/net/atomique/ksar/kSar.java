@@ -144,10 +144,10 @@ public class kSar {
 
                 parser_return = myparser.parse(current_line, columns);
                 if (parser_return == 1 && GlobalOptions.isDodebug()) {
-                    System.out.println("### " + current_line);
+                    System.out.println("IGNORED (" + lines_parsed + "): " + current_line);
                 }
                 if (parser_return < 0 && GlobalOptions.isDodebug()) {
-                    System.out.println("ERR " + current_line);
+                    System.out.println("ERRROR ("+ lines_parsed +"): " + current_line);
                 }
 
                 myparser.updateUITitle();
