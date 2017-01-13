@@ -30,7 +30,7 @@ public class Main {
     }
 
     public static void show_version() {
-        System.err.println("ksar Version : " + VersionNumber.getVersionNumber());
+        System.err.println("ksar2 Version : " + VersionNumber.getVersionNumber());
     }
 
     private static void set_lookandfeel() {
