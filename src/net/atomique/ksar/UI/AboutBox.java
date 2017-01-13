@@ -12,6 +12,10 @@
 package net.atomique.ksar.UI;
 
 import java.awt.Dimension;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import net.atomique.ksar.VersionNumber;
 
 /**
@@ -84,7 +88,15 @@ public class AboutBox extends javax.swing.JDialog {
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
+        urllabel.setForeground(new java.awt.Color(102, 0, 255));
         urllabel.setText("https://github.com/ppalucha/ksar2");
+        urllabel.setToolTipText("Go to project's website");
+        urllabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        urllabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                urllabelMouseClicked(evt);
+            }
+        });
         jPanel2.add(urllabel);
 
         authorlabel.setText("Author: Paweł Pałucha");
@@ -115,6 +127,28 @@ public class AboutBox extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_OkButtonActionPerformed
+
+    private void urllabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_urllabelMouseClicked
+        /* Some people say this is the cross-platform solution for opening link in Java */
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            /* Windows, Linux with GTK2, Max (?) */
+            try {
+                Desktop.getDesktop().browse(new URI(urllabel.getText()));
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            /* Linux without GTK2 libraries */
+            Runtime runtime = Runtime.getRuntime();
+            try {
+                runtime.exec(new String[]{"xdg-open", urllabel.getText()});
+            } catch (IOException e) {
+               e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_urllabelMouseClicked
 
    
 
