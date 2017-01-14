@@ -56,8 +56,10 @@ public class FileCSV implements Runnable {
         tmpcsv.append("\n");
         Iterator<Second> ite = mysar.myparser.getDateSamples().iterator();
         while (ite.hasNext()) {
-            Second tmp = ite.next();
-            export_treenode_data(mysar.graphtree, tmp);
+            Second curr = ite.next();
+            tmpcsv.append(curr);
+            tmpcsv.append(";");
+            export_treenode_data(mysar.graphtree, curr);
             tmpcsv.append("\n");
         }
         try {
@@ -106,6 +108,7 @@ public class FileCSV implements Runnable {
      public void export_treenode_data(SortedTreeNode node, RegularTimePeriod time) {
         int num = node.getChildCount();
 
+        
         if (num > 0) {
             Object obj1 = node.getUserObject();
             if (obj1 instanceof ParentNodeInfo) {

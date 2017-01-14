@@ -226,7 +226,7 @@ public class Graph {
         Iterator ite = datelist.getTimePeriods().iterator();
         while (ite.hasNext()) {
             TimePeriod item = (TimePeriod) ite.next();
-            tmp.append(item.toString());
+            tmp.append(item);
             tmp.append(";");
             tmp.append(getCsvLine((RegularTimePeriod) item));
             tmp.append("\n");
