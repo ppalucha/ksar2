@@ -13,5 +13,6 @@ If you want just to run the application, download and run jar file from *distrib
 
 v0.0.1 
  - Parsing RedHat 7.x sar files.
+
 v0.0.2 (in progress)
  - Added missing date column in CSV export.
