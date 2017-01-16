@@ -6,8 +6,6 @@ package net.atomique.ksar.Parser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import net.atomique.ksar.Config;
 import net.atomique.ksar.OSParser;
 import net.atomique.ksar.GlobalOptions;
@@ -23,6 +21,44 @@ import org.jfree.data.time.Second;
  */
 public class Linux extends OSParser {
 
+    /**
+     * Tries to guess date format based on date in header. Sometimes we cannot
+     * differenciate between MM/dd/yy and dd/MM/yy, in such cases we show dialog
+     * with format to choose from.
+     *
+     * @param dt Date string to parse
+     * @return Date format
+     */
+    protected String guessDateFormat(String dt) {
+        String[] formats = {"MM/dd/yy", "dd/MM/yy", "yy-MM-dd"};
+        String format = "";
+        int matching = 0;
+
+        for (String i : formats) {
+            try {
+                SimpleDateFormat tmp_ft = new SimpleDateFormat(i);
+                tmp_ft.setLenient(false);
+                tmp_ft.parse(dt);
+                matching += 1;
+                format = i;
+            } catch (ParseException e) {
+            }
+        }
+        if (matching <= 0) {
+            throw new RuntimeException("Cannot parse date '" + dt + "'");
+        }
+        if (matching > 1) {
+            return checkDateFormat(dt);
+        }
+        return format;
+    }
+
+    /**
+     * Parses first line of input file.
+     *
+     * @param s First line content
+     */
+    @Override
     public void parse_header(String s) {
         boolean retdate = false;
         LinuxDateFormat = Config.getLinuxDateFormat();
@@ -32,50 +68,59 @@ public class Linux extends OSParser {
         setKernel(columns[1]);
         tmpstr = columns[2];
         setHostname(tmpstr.substring(1, tmpstr.length() - 1));
-        checkDateFormat();
-        retdate=setDate(columns[3]);
-        
+        dateFormat = guessDateFormat(columns[3]);
+        retdate = setDate(columns[3]);
+        timeFormat = null;
+
     }
 
-    private void checkDateFormat() {
+    /**
+     * Returns configured Linux date format based on property or dialog output.
+     *
+     * @param dt Date to check format for
+     * @return date format
+     */
+    private String checkDateFormat(String dt) {
 
-        if ("Always ask".equals(LinuxDateFormat)) {
-            askDateFormat("Provide date Format");
+        if (LinuxDateFormat == null || "Always ask".equals(LinuxDateFormat)) {
+            LinuxDateFormat = askDateFormat("Provide date Format", dt);
         }
-        
-        if ("MM/DD/YYYY 23:59:59".equals(LinuxDateFormat)) {
-            dateFormat = "MM/dd/yy";
-        } else if ("MM/DD/YYYY 12:59:59 AM|PM".equals(LinuxDateFormat)) {
-            dateFormat = "MM/dd/yy";
-            timeFormat = "hh:mm:ss a";
-            timeColumn=2;
-        } else if ("DD/MM/YYYY 23:59:59".equals(LinuxDateFormat)) {
-            dateFormat = "dd/MM/yy";
-        } else if ("YYYY-MM-DD 23:59:59".equals(LinuxDateFormat)) {
-            dateFormat = "yy-MM-dd";
-        }  else if ("YYYY-MM-DD 12:59:59 AM|PM".equals(LinuxDateFormat)) {
-            dateFormat = "yy-MM-dd";
-            timeFormat = "hh:mm:ss a";
-            timeColumn=2;
+
+        if ("DD/MM/YYYY".equals(LinuxDateFormat)) {
+            return "dd/MM/yy";
+        } else {
+            /* So this is kind of default one if UI is not available */
+            return "MM/dd/yy";
         }
     }
 
-    private void askDateFormat(String s) {
-        if ( GlobalOptions.hasUI() ) {
-            LinuxDateFormat dlg = new LinuxDateFormat(GlobalOptions.getUI(),true);
-            dlg.setTitle(s);
-            if ( dlg.isOk()) {
-                LinuxDateFormat=dlg.getDateFormat();
-                if ( dlg.hasToRemenber() ) {
+    /**
+     * Returns preferred dd/MM or MM/dd date format based on dialog output.
+     * Saves preferred format to configuration if user asked for it.
+     *
+     * @param title Title of dialog
+     * @param dt Date for ask format for
+     * @return Preferred date format
+     */
+    protected String askDateFormat(String title, String dt) {
+        if (GlobalOptions.hasUI()) {
+            LinuxDateFormat dlg = new LinuxDateFormat(GlobalOptions.getUI(), true, dt);
+            dlg.setTitle(title);
+            if (dlg.isOk()) {
+
+                if (dlg.hasToRemenber()) {
                     Config.setLinuxDateFormat(dlg.getDateFormat());
                     Config.save();
                 }
+                return dlg.getDateFormat();
             }
         }
+        return null;
     }
-    
+
     /**
      * Parses single line
+     *
      * @param line Whole line to parse
      * @param columns Array of white-space separated tokens from line
      * @return 0 on succesfull parse, 1 on ignored line, negative for error
@@ -106,8 +151,17 @@ public class Linux extends OSParser {
         }
 
         try {
-            if ( timeColumn == 2 ) {
-                parsedate = new SimpleDateFormat(timeFormat).parse(columns[0]+" "+columns[1]);
+            if (timeFormat == null) {
+                /* only on first line - guess time format */
+                if ("AM".equals(columns[1]) || "PM".equals(columns[1])) {
+                    timeColumn = 2;
+                    timeFormat = "hh:mm:ss a";
+                } else {
+                    timeFormat = "HH:mm:ss";
+                }
+            }
+            if (timeColumn == 2) {
+                parsedate = new SimpleDateFormat(timeFormat).parse(columns[0] + " " + columns[1]);
             } else {
                 parsedate = new SimpleDateFormat(timeFormat).parse(columns[0]);
             }
@@ -134,13 +188,14 @@ public class Linux extends OSParser {
             return -1;
         }
 
-
         //00:20:01     CPU  i000/s  i001/s  i002/s  i008/s  i009/s  i010/s  i011/s  i012/s  i014/s
         if ("CPU".equals(columns[firstdatacolumn]) && line.matches(".*i([0-9]+)/s.*")) {
             currentStat = "IGNORE";
             return 1;
         }
-        /** XML COLUMN PARSER **/
+        /**
+         * XML COLUMN PARSER *
+         */
         String checkStat = myosconfig.getStat(columns, firstdatacolumn);
         if (checkStat != null) {
             Object obj = ListofGraph.get(checkStat);
@@ -173,20 +228,17 @@ public class Linux extends OSParser {
         }
 
         //System.out.println( currentStat +" " + line);
-
-
-
         if (lastStat != null) {
-            if (!lastStat.equals(currentStat) ) {
-                if (  GlobalOptions.isDodebug())  {
-                System.out.println("Stat change from " + lastStat + " to " + currentStat);
+            if (!lastStat.equals(currentStat)) {
+                if (GlobalOptions.isDodebug()) {
+                    System.out.println("Stat change from " + lastStat + " to " + currentStat);
                 }
                 lastStat = currentStat;
             }
         } else {
             lastStat = currentStat;
         }
-        
+
         if ("IGNORE".equals(currentStat)) {
             return 1;
         }
@@ -211,7 +263,6 @@ public class Linux extends OSParser {
         return -1;
     }
 
-
     private String LinuxDateFormat;
-    
+
 }

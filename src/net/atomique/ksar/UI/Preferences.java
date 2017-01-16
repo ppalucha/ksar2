@@ -54,10 +54,8 @@ public class Preferences extends javax.swing.JDialog {
 
     private void load_linuxformat() {
         LinuxFormatComboModel.addElement("Always ask");
-        LinuxFormatComboModel.addElement("MM/DD/YYYY 12:59:59 AM|PM");
-        LinuxFormatComboModel.addElement("MM/DD/YYYY 23:59:59");
-        LinuxFormatComboModel.addElement("DD/MM/YYYY 23:59:59");
-        LinuxFormatComboModel.addElement("YYYY-MM-DD 23:59:59");
+        LinuxFormatComboModel.addElement("MM/DD/YYYY");
+        LinuxFormatComboModel.addElement("DD/MM/YYYY");
         jComboBox3.setSelectedItem(Config.getLinuxDateFormat());
     }
     
@@ -87,7 +85,6 @@ public class Preferences extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
         jPanel6 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -128,7 +125,7 @@ public class Preferences extends javax.swing.JDialog {
         jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jLabel7.setLabelFor(jComboBox3);
-        jLabel7.setText("Linux Format:");
+        jLabel7.setText("Linux Date Format:");
         jPanel10.add(jLabel7);
 
         jComboBox3.setModel(LinuxFormatComboModel);
@@ -137,10 +134,6 @@ public class Preferences extends javax.swing.JDialog {
         jPanel4.add(jPanel10);
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 2, 2));
-
-        jLabel2.setText("Language: ");
-        jPanel6.add(jLabel2);
-
         jPanel4.add(jPanel6);
 
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -258,7 +251,6 @@ public class Preferences extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
