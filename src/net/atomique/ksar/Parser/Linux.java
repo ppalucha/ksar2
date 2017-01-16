@@ -53,17 +53,21 @@ public class Linux extends OSParser {
             dateFormat = "dd/MM/yy";
         } else if ("YYYY-MM-DD 23:59:59".equals(LinuxDateFormat)) {
             dateFormat = "yy-MM-dd";
-        }  
+        }  else if ("YYYY-MM-DD 12:59:59 AM|PM".equals(LinuxDateFormat)) {
+            dateFormat = "yy-MM-dd";
+            timeFormat = "hh:mm:ss a";
+            timeColumn=2;
+        }
     }
 
     private void askDateFormat(String s) {
         if ( GlobalOptions.hasUI() ) {
-            LinuxDateFormat tmp = new LinuxDateFormat(GlobalOptions.getUI(),true);
-            tmp.setTitle(s);
-            if ( tmp.isOk()) {
-                LinuxDateFormat=tmp.getDateFormat();
-                if ( tmp.hasToRemenber() ) {
-                    Config.setLinuxDateFormat(tmp.getDateFormat());
+            LinuxDateFormat dlg = new LinuxDateFormat(GlobalOptions.getUI(),true);
+            dlg.setTitle(s);
+            if ( dlg.isOk()) {
+                LinuxDateFormat=dlg.getDateFormat();
+                if ( dlg.hasToRemenber() ) {
+                    Config.setLinuxDateFormat(dlg.getDateFormat());
                     Config.save();
                 }
             }
