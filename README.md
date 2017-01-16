@@ -7,12 +7,17 @@ by Unix/Linux sa/sar commands.
 This is fork of ksar project hosted originally at sourceforce.net. Since original project 
 seams to be abandoned, this fork is created to maintain and develop the application.
 
-If you want just to run the application, download and run jar file from *distrib* directory.
+If you want just to run the application, download JAR file from releases page and run with:
+##java -jar \<JAR FILE NAME\>##
+
+Lastest jar is also avaialble in *distrib* directory.
 
 # News
+v0.0.2
+ - Auto detecting Linux date/time format.
+ - Added missing date column in CSV export.
 
 v0.0.1 
  - Parsing RedHat 7.x sar files.
 
-v0.0.2 (in progress)
- - Added missing date column in CSV export.
+
