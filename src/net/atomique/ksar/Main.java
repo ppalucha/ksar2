@@ -118,10 +118,6 @@ public class Main {
         }
 
         make_ui();
-
-
-
-        System.out.println("exit");
     }
 
     public static void exit_error(final String message) {
