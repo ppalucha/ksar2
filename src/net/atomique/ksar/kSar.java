@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
+import net.atomique.ksar.Export.FileCSV;
+import net.atomique.ksar.Export.FilePDF;
 import net.atomique.ksar.Graph.Graph;
+import static net.atomique.ksar.Main.cmdline;
 import net.atomique.ksar.UI.DataView;
 import net.atomique.ksar.UI.SortedTreeNode;
 import net.atomique.ksar.UI.TreeNodeInfo;
@@ -37,15 +40,15 @@ public class kSar {
             dataview.setSelected(true);
         } catch (PropertyVetoException vetoe) {
         }
-        if (GlobalOptions.getCLfilename() != null) {
-            do_fileread(GlobalOptions.getCLfilename());
+        if (cmdline.hasOption("input")) {
+            do_fileread(cmdline.getOptionValue("input"));
         }
     }
 
     public kSar() {
     }
 
-    public void do_fileread(String filename) {
+    private void do_fileread(String filename) {
         if (filename == null) {
             launched_action = new FileRead(this);
         } else {
@@ -171,6 +174,17 @@ public class kSar {
             }
         }
         Parsing = false;
+        
+        if (cmdline.hasOption("pdf")) {
+            Runnable pdf = new FilePDF(cmdline.getOptionValue("pdf"), this);
+            Thread th = new Thread(pdf);
+            th.start();
+        }
+        if (cmdline.hasOption("csv")) {
+            Runnable csv = new FileCSV(cmdline.getOptionValue("csv"), this);
+            Thread th = new Thread(csv);
+            th.start();
+        }
         return -1;
     }
 

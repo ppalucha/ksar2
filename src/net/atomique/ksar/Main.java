@@ -12,6 +12,14 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import net.atomique.ksar.UI.Desktop;
 import net.atomique.ksar.UI.SplashScreen;
+import net.atomique.ksar.Export.FileCSV;
+import net.atomique.ksar.Export.FilePDF;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 /**
  *
@@ -22,13 +30,8 @@ public class Main {
     static Config config = null;
     static GlobalOptions globaloptions = null;
     static ResourceBundle resource = ResourceBundle.getBundle("net/atomique/ksar/Language/Message");
-
-    ;
-
-    public static void usage() {
-        show_version();
-    }
-
+    static public CommandLine cmdline;
+    
     public static void show_version() {
         System.err.println("ksar2 Version : " + VersionNumber.getVersionNumber());
     }
@@ -74,6 +77,40 @@ public class Main {
         });
 
     }
+    
+    /**
+     * Parse command line arguments, sets @see cmdline member.
+     * @param args Arguments passed by main
+     * @return Parsed command line
+     */
+    protected static CommandLine parse_args(String[] args) {
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmdline;
+        Options options = new Options();
+        options.addOption("v", "version", false, "print version information");
+        options.addOption("h", "help", false, "print usage information");
+        options.addOption("d", "debug", false, "turn on debugging");
+        options.addOption("i", "input", true, "parse file given as option's argument");
+        options.addOption("p", "pdf", true, "export graphs to PDF file");
+        options.addOption("c", "csv", true, "export graphs to CSV file");
+        try {
+            cmdline = parser.parse(options, args);
+        } catch (ParseException exp) {
+            exit_error("Error parsing arguments, use -h options to print usage info.");
+            return null;
+        }
+        if (cmdline.hasOption("help")) {
+            HelpFormatter help = new HelpFormatter();
+            help.printHelp("ksar2 [OPTION] ...", "Fork of ksar - a sar grapher.", options, null);
+        }
+        if (cmdline.hasOption("csv") && ! cmdline.hasOption("input")) {
+            exit_error("Option -c requires also -i; use -h to print usage info.");
+        }
+        if (cmdline.hasOption("pdf") && ! cmdline.hasOption("input")) {
+            exit_error("Option -p requires also -i; use -h to print usage info.");
+        }
+        return cmdline;
+    }
 
     public static void main(String[] args) {
         int i = 0;
@@ -88,38 +125,22 @@ public class Main {
 
         config = Config.getInstance();
         globaloptions = GlobalOptions.getInstance();
-
-
-
-        if (args.length > 0) {
-            while (i < args.length && args[i].startsWith("-")) {
-                arg = args[i++];
-                if ("-version".equals(arg)) {
-                    show_version();
-                    System.exit(0);
-                }
-                if ("-help".equals(arg)) {
-                    usage();
-                    continue;
-                }
-                if ("-test".equals(arg)) {
-                    GlobalOptions.setDodebug(true);
-                    continue;
-                }
-                if ("-input".equals(arg)) {
-                    if (i < args.length) {
-                        GlobalOptions.setCLfilename(args[i++]);
-                    } else {
-                        exit_error(resource.getString("INPUT_REQUIRE_ARG"));
-                    }
-                    continue;
-                }
-            }
+        cmdline = parse_args(args);
+        
+        if (cmdline.hasOption("debug")) {
+            GlobalOptions.setDodebug(true);
         }
-
-        make_ui();
+        
+        if (cmdline.hasOption("version")) {
+            show_version();
+            return;
+        }
+        if (cmdline.hasOption("help")) {
+            return;
+        }
+        make_ui();       
     }
-
+    
     public static void exit_error(final String message) {
         System.err.println(message);
         System.exit(1);
