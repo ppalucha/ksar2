@@ -162,7 +162,7 @@ public class FilePDF extends PdfPageEventHelper implements Runnable {
             pdfcb.beginText();
             pdfcb.setFontAndSize(bf, 10);
             pdfcb.setColorFill(new BaseColor(0x00, 0x00, 0x00));
-            pdfcb.showTextAligned(PdfContentByte.ALIGN_RIGHT, text, ((pdfheight - pdfmargins) - 10), 10 + pdfmargins, 0);
+            pdfcb.showTextAligned(PdfContentByte.ALIGN_RIGHT, text, (pdfwidth - pdfmargins) - 10, 10 + pdfmargins, 0);
             pdfcb.endText();
         } catch (Exception e) {
             throw new ExceptionConverter(e);
