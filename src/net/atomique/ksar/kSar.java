@@ -48,7 +48,7 @@ public class kSar {
     public kSar() {
     }
 
-    private void do_fileread(String filename) {
+    public void do_fileread(String filename) {
         if (filename == null) {
             launched_action = new FileRead(this);
         } else {

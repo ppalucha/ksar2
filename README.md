@@ -13,6 +13,11 @@ with `java -jar <JAR FILE NAME>`.
 Lastest jar is also avaialble in *distrib* directory.
 
 # News
+v0.0.4
+ - File open fixes.
+v0.0.3
+ - New command line handling.
+ - PDF export fixes.
 v0.0.2
  - Auto detecting Linux date/time format.
  - Added missing date column in CSV export.
