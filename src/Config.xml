@@ -111,6 +111,15 @@
         <itemcolor name="%wio">
             <color>255,0,127</color>
         </itemcolor>
+        <itemcolor name="%irq">
+            <color>175,125,75</color>
+        </itemcolor>
+        <itemcolor name="%soft">
+            <color>125,75,175</color>
+        </itemcolor>
+        <itemcolor name="%guest">
+            <color>75,175,125</color>
+        </itemcolor>
 
         <itemcolor name="ldavg-1">
             <color>255,0,0</color>
