@@ -132,7 +132,8 @@ public class Linux extends OSParser {
         int seconde = 0;
         Second now = null;
 
-        if ("Average:".equals(columns[0])) {
+        // Test for "Average:" in different locales, like "Durchschnitt:":
+        if (columns[0].matches("(?i)^[a-z]+:")) {
             currentStat = "NONE";
             return 0;
         }
