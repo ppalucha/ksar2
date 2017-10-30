@@ -32,50 +32,8 @@
         <itemcolor name="mdmin/s">
             <color>255,0,255</color>
         </itemcolor>
-        <itemcolor name="%usr">
-            <color>0,255,0</color>
-        </itemcolor>
-        <itemcolor name="%sys">
-            <color>255,0,0</color>
-        </itemcolor>
-        <itemcolor name ="%system">
-            <color>255,0,0</color>
-        </itemcolor>
-        <itemcolor name="%user">
-            <color>0,255,0</color>
-        </itemcolor>
-        <itemcolor name="%idle">
-            <color>127,127,127</color>
-        </itemcolor>
-        <itemcolor name="%nice">
-            <color>255,255,0</color>
-        </itemcolor>
-        <itemcolor name="%steal">
-            <color>255,127,0</color>
-        </itemcolor>
-        <itemcolor name="%iowait">
-            <color>255,0,127</color>
-        </itemcolor>
-        <itemcolor name="%wio">
-            <color>255,0,127</color>
-        </itemcolor>
         <itemcolor name="intr/s">
             <color>255,127,127</color>
-        </itemcolor>
-        <itemcolor name="ldavg-1">
-            <color>255,0,0</color>
-        </itemcolor>
-        <itemcolor name="ldavg-5">
-            <color>0,255,0</color>
-        </itemcolor>
-        <itemcolor name="ldavg-15">
-            <color>0,255,0</color>
-        </itemcolor>
-        <itemcolor name="plist-sz">
-            <color>0,255,255</color>
-        </itemcolor>
-        <itemcolor name="runq-sz">
-            <color>255,255,0</color>
         </itemcolor>
         <itemcolor name="coll/s">
             <color>255,0,0</color>
@@ -111,14 +69,68 @@
             <color>255,0,255</color>
             <type>counter</type>
         </itemcolor>
-        <itemcolor name="tps">
-            <color>255,0,0</color>
-        </itemcolor>
         <itemcolor name="bread/s">
             <color>255,0,0</color>
         </itemcolor>
         <itemcolor name="bwrtn/s">
             <color>255,255,0</color>
+        </itemcolor>
+        <itemcolor name="r+w/s">
+            <color>0,127,255</color>
+            <type>counter</type>
+        </itemcolor>
+
+        <itemcolor name="%usr">
+            <color>0,255,0</color>
+        </itemcolor>
+        <itemcolor name="%user">
+            <color>0,255,0</color>
+        </itemcolor>
+        <itemcolor name="%sys">
+            <color>255,0,0</color>
+        </itemcolor>
+        <itemcolor name ="%system">
+            <color>255,0,0</color>
+        </itemcolor>
+        <itemcolor name="%idle">
+            <color>127,127,127</color>
+        </itemcolor>
+        <itemcolor name="%nice">
+            <color>255,255,0</color>
+        </itemcolor>
+        <itemcolor name="%busy">
+            <color>255,255,0</color>
+            <type>gauge</type>
+        </itemcolor>
+        <itemcolor name="%steal">
+            <color>255,127,0</color>
+        </itemcolor>
+        <itemcolor name="%iowait">
+            <color>255,0,127</color>
+        </itemcolor>
+        <itemcolor name="%wio">
+            <color>255,0,127</color>
+        </itemcolor>
+
+        <itemcolor name="ldavg-1">
+            <color>255,0,0</color>
+        </itemcolor>
+        <itemcolor name="ldavg-5">
+            <color>0,255,0</color>
+        </itemcolor>
+        <itemcolor name="ldavg-15">
+            <color>0,255,0</color>
+        </itemcolor>
+
+        <itemcolor name="plist-sz">
+            <color>0,255,255</color>
+        </itemcolor>
+        <itemcolor name="runq-sz">
+            <color>255,255,0</color>
+        </itemcolor>
+
+        <itemcolor name="tps">
+            <color>255,0,0</color>
         </itemcolor>
         <itemcolor name="rtps">
             <color>255,0,255</color>
@@ -126,6 +138,7 @@
         <itemcolor name="wtps">
             <color>0,0,255</color>
         </itemcolor>
+
         <itemcolor name="avwait">
             <color>255,0,0</color>
             <type>gauge</type>
@@ -138,14 +151,6 @@
             <color>255,0,255</color>
             <type>gauge</type>
         </itemcolor>
-        <itemcolor name="r+w/s">
-            <color>0,127,255</color>
-            <type>counter</type>
-        </itemcolor>
-        <itemcolor name="%busy">
-            <color>255,255,0</color>
-            <type>gauge</type>
-        </itemcolor>
     </colors>
-    
+
 </ConfiG>
