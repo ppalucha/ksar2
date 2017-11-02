@@ -8,6 +8,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -96,11 +97,12 @@ public class Graph {
 
     public int parse_line(Second now, String s) {
         String[] cols = s.split("\\s+");
-        Double colvalue = null;
+        Number colvalue = null;
+        NumberFormat nf = NumberFormat.getInstance();
         //System.out.println("graph parsing:" + s);
         for (int i = skipColumn; i < HeaderStr.length; i++) {
             try {
-                colvalue = new Double(cols[i]);
+                colvalue = nf.parse(cols[i]);
             } catch (NumberFormatException ne) {
                 System.out.println(graphtitle + " " + cols[i] + " is NaN");
                 return 0;
@@ -110,12 +112,12 @@ public class Graph {
                 return 0;
             }
 
-            add_datapoint_plot(now, i-skipColumn , HeaderStr[i-skipColumn], colvalue);
+            add_datapoint_plot(now, i-skipColumn , HeaderStr[i-skipColumn], colvalue.doubleValue());
 
 
             TimeTableXYDataset tmp = StackListbyCol.get(HeaderStr[i]);
             if (tmp != null) {
-                add_datapoint_stack(tmp, now, i , HeaderStr[i], colvalue);
+                add_datapoint_stack(tmp, now, i , HeaderStr[i], colvalue.doubleValue());
             }
         }
 
