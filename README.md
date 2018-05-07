@@ -8,11 +8,12 @@ This is fork of ksar project hosted originally at sourceforce.net. Since origina
 seams to be abandoned, this fork is created to maintain and develop the application.
 
 If you want just to run the application, download JAR file from releases page and run 
-with `java -jar <JAR FILE NAME>`.
-
-Lastest jar is also avaialble in *distrib* directory.
+with `java -jar <JAR FILE NAME>`. To compile, you need to have Maven installed, in source directory run `mvn install`. IDE project configuration is included for NetBeans. You need to use JDK >=6 and <= 8.
 
 # News
+v0.0.5
+ - Build system changed to Maven, dependent libraries are no longer included in source.
+
 v0.0.4
  - File open fixes.
 
