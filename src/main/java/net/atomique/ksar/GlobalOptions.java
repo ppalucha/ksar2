@@ -59,6 +59,7 @@ public class GlobalOptions {
         HistoryList = new HashMap<String, CnxHistory>();
         HostInfoList = new HashMap<String, HostInfo>();
         is = this.getClass().getResourceAsStream("/Config.xml");
+        assert(is != null);
         tmp = new XMLConfig(is);
         for ( String  OSName : OSParserNames ) {
             try {

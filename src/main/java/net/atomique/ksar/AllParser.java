@@ -37,7 +37,7 @@ public abstract class AllParser {
         init(hissar, header);
     }
 
-    public int parse(String line, String[] columns) {
+    public int parse(String line, String[] columns, int line_number) {
         System.err.println("not implemented");
         return -1;
     }

@@ -126,7 +126,7 @@ public class Linux extends OSParser {
      * @return 0 on succesfull parse, 1 on ignored line, negative for error
      */
     @Override
-    public int parse(String line, String[] columns) {
+    public int parse(String line, String[] columns, int line_number) {
         int heure = 0;
         int minute = 0;
         int seconde = 0;
@@ -254,11 +254,11 @@ public class Linux extends OSParser {
             DateSamples.add(now);
             if (currentStatObj instanceof Graph) {
                 Graph ag = (Graph) currentStatObj;
-                return ag.parse_line(now, line);
+                return ag.parse_line(now, line, line_number);
             }
             if (currentStatObj instanceof List) {
                 List ag = (List) currentStatObj;
-                return ag.parse_line(now, line);
+                return ag.parse_line(now, line, line_number);
             }
         }
         return -1;

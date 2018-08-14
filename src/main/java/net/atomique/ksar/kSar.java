@@ -145,7 +145,7 @@ public class kSar {
                     return -1;
                 }
 
-                parser_return = myparser.parse(current_line, columns);
+                parser_return = myparser.parse(current_line, columns, lines_parsed);
                 if (parser_return == 1 && GlobalOptions.isDodebug()) {
                     System.out.println("IGNORED (" + lines_parsed + "): " + current_line);
                 }
@@ -250,7 +250,7 @@ public class kSar {
         return Parsing;
     }
     DataView dataview = null;
-    private long lines_parsed = 0L;
+    private int lines_parsed = 0;
     private String reload_action = "Empty";
     private Thread launched_action = null;
     private boolean action_interrupted = false;

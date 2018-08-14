@@ -8,8 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.atomique.ksar.OSParser;
 import net.atomique.ksar.GlobalOptions;
 import net.atomique.ksar.Graph.Graph;
@@ -34,9 +32,7 @@ public class HPUX extends OSParser {
 
     }
 
-    
-    @Override
-    public int parse(String line, String[] columns) {
+    public int parse(String line, String[] columns, int line_number) {
         int heure = 0;
         int minute = 0;
         int seconde = 0;
@@ -153,11 +149,11 @@ public class HPUX extends OSParser {
         } else {
             if (currentStatObj instanceof Graph) {
                 Graph ag = (Graph) currentStatObj;
-                return ag.parse_line(now, line);
+                return ag.parse_line(now, line, line_number);
             }
             if (currentStatObj instanceof List) {
                 List ag = (List) currentStatObj;
-                return ag.parse_line(now, line);
+                return ag.parse_line(now, line, line_number);
             }
         }
         return -1;

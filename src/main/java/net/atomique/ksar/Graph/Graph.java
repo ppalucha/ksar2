@@ -95,7 +95,7 @@ public class Graph {
         }
     }
 
-    public int parse_line(Second now, String s) {
+    public int parse_line(Second now, String s, int line_number) {
         String[] cols = s.split("\\s+");
         Number colvalue = null;
         NumberFormat nf = NumberFormat.getInstance();
@@ -103,11 +103,15 @@ public class Graph {
         for (int i = skipColumn; i < HeaderStr.length; i++) {
             try {
                 colvalue = nf.parse(cols[i]);
+                
+            } catch(IndexOutOfBoundsException e) {
+                /* less columns in data than in header */
+                System.out.println(graphtitle + ", line number " + line_number + ": missing data column " + (i + 1));
             } catch (NumberFormatException ne) {
-                System.out.println(graphtitle + " " + cols[i] + " is NaN");
+                System.out.println(graphtitle + ", line number " + line_number + ":" + cols[i] + " is NaN");
                 return 0;
             } catch (Exception ae) {
-                System.out.println(graphtitle + " " + cols[i] + "  is undef " + s);
+                System.out.println(graphtitle + ", line number " + line_number + ":" + cols[i] + "  is undef " + s);
                 ae.printStackTrace();
                 return 0;
             }

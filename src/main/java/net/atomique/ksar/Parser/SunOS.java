@@ -21,6 +21,7 @@ import org.jfree.data.time.Second;
  */
 public class SunOS extends OSParser {
 
+    @Override
     public void parse_header(String s) {
         String[] columns = s.split("\\s+");
         setOstype(columns[0]);
@@ -44,27 +45,24 @@ public class SunOS extends OSParser {
     }
 
     @Override
-    public int parse(String line, String[] columns) {
-        int heure = 0;
-        int minute = 0;
-        int seconde = 0;
-
+    public int parse(String line, String[] columns, int line_number) {
+        int heure, minute, seconde;
 
         if ("Average".equals(columns[0])) {
             under_average = true;
             return 0;
         }
 
-        if (line.indexOf("unix restarts") >= 0 || line.indexOf(" unix restarted") >= 0) {
+        if (line.contains("unix restarts") || line.contains(" unix restarted")) {
             return 0;
         }
 
         // match the System [C|c]onfiguration line on AIX
-        if (line.indexOf("System Configuration") >= 0 || line.indexOf("System configuration") >= 0) {
+        if (line.contains("System Configuration") || line.contains("System configuration")) {
             return 0;
         }
 
-        if (line.indexOf("State change") >= 0) {
+        if (line.contains("State change")) {
             return 0;
         }
 
@@ -161,11 +159,11 @@ public class SunOS extends OSParser {
             DateSamples.add(now);
             if (currentStatObj instanceof Graph) {
                 Graph ag = (Graph) currentStatObj;
-                return ag.parse_line(now, line);
+                return ag.parse_line(now, line, line_number);
             }
             if (currentStatObj instanceof List) {
                 List ag = (List) currentStatObj;
-                return ag.parse_line(now, line);
+                return ag.parse_line(now, line, line_number);
             }
         }
         return -1;

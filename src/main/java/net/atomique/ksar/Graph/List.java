@@ -37,7 +37,14 @@ public class List {
         mysar.add2tree(mysar.graphtree, parentTreeNode);
     }
 
-    public int parse_line(Second now,String s) {
+    /**
+     * Parse single line
+     * @param now
+     * @param s
+     * @param line_number Line number - for printing correct information in case of error
+     * @return
+     */
+    public int parse_line(Second now,String s, int line_number) {
         String cols[] = s.split("\\s+");
         Graph tmp = null;
         if ( ! nodeHashList.containsKey(cols[skipColumn])) {
@@ -50,7 +57,7 @@ public class List {
             tmp = (Graph)nodeHashList.get(cols[skipColumn]);
         }
 
-        return tmp.parse_line(now,s);
+        return tmp.parse_line(now,s, line_number);
     }
 
 
