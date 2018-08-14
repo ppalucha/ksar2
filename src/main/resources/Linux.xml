@@ -249,11 +249,11 @@
             
             <Stat name="socket1">
                 <headerstr>totsck tcpsck udpsck rawsck ip-frag</headerstr>
-                <graphname>SOCKET</graphname>
+                <graphname>SOCKETS</graphname>
             </Stat>
             <Stat name="socket2">
                 <headerstr>totsck tcpsck udpsck rawsck ip-frag tcp-tw</headerstr>
-                <graphname>SOCKET</graphname>
+                <graphname>SOCKETS</graphname>
             </Stat>
             
             <Stat name="swap1">
@@ -405,8 +405,8 @@
             </Graph>
             
             
-            <Graph name="SOCKET" Title="Socket" type="unique">
-                <Plot Title="Socket">
+            <Graph name="SOCKETS" Title="Sockets" type="unique">
+                <Plot Title="Sockets">
                     <cols>totsck tcpsck udpsck rawsck</cols>
                 </Plot>
                 <Plot Title="Frag">
